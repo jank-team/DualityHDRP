@@ -1,21 +1,32 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
+[ExecuteInEditMode]
 public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
 {
+    public string name = "Building";
+    public Button openOverlayButton;
+    public TextMeshProUGUI buttonText;
+
+    public Canvas overlay;
+    public TextMeshProUGUI overlayTitle;
+    public TextMeshProUGUI overlayContent;
+    public Button upgradeButton;
+    public Button closeOverlayButton;
+    public Button closeOverlayBackgroundButton;
+
     private DropPool<T> _dropPool;
-    private int _level = 0;
+    private int _level;
 
     public void Awake()
     {
         _dropPool = GetDropPool();
+        SetupGui();
     }
-
-    protected abstract DropPool<T> GetDropPool();
 
     public List<T> GetItems()
     {
@@ -32,4 +43,35 @@ public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
     {
         _level += 1;
     }
+
+    private void SetupGui()
+    {
+        // In-world
+        var openOverlayButtonText = openOverlayButton.GetComponentInChildren<TextMeshProUGUI>();
+        openOverlayButtonText.text = name;
+        openOverlayButton.onClick.AddListener(OpenOverlay);
+
+        // Overlay
+        overlayTitle.text = name;
+        upgradeButton.onClick.AddListener(Upgrade);
+        closeOverlayButton.onClick.AddListener(CloseOverlay);
+        closeOverlayBackgroundButton.onClick.AddListener(CloseOverlay);
+    }
+
+    private void OpenOverlay()
+    {
+        overlay.enabled = true;
+
+        var textContent = string.Join(Environment.NewLine,
+            GetItems().Select(item => $"{item.Rank} {item.Name} - ${item.Value}"));
+
+        overlayContent.text = textContent;
+    }
+
+    private void CloseOverlay()
+    {
+        overlay.enabled = false;
+    }
+
+    protected abstract DropPool<T> GetDropPool();
 }

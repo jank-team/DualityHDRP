@@ -40,11 +40,16 @@ public class DropPool<T> where T : Item
         List<T> items = null;
 
         foreach (var kvp in _ranks)
+        {
             if (value <= kvp.Value && _rankedItems.ContainsKey(kvp.Key))
             {
                 items = _rankedItems[kvp.Key];
+            }
+            else
+            {
                 break;
             }
+        }
 
         if (items == null) return null;
 
