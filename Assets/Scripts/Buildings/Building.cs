@@ -37,11 +37,13 @@ public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
     {
         var dropPoolSize = 10 + _level;
         _dropPool.UpdateCurrentItems(dropPoolSize);
+        UpdateOverlay();
     }
 
     public void Upgrade()
     {
         _level += 1;
+        UpdateItems();
     }
 
     private void SetupGui()
@@ -60,8 +62,12 @@ public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
 
     private void OpenOverlay()
     {
+        UpdateOverlay();
         overlay.enabled = true;
+    }
 
+    private void UpdateOverlay()
+    {
         var textContent = string.Join(Environment.NewLine,
             GetItems().Select(item => $"{item.Rank} {item.Name} - ${item.Value}"));
 
