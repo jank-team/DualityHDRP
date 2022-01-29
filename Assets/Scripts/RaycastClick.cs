@@ -130,7 +130,6 @@ CTRL + Mouse Wheel to rotate.";
             _buildingCollider = null;
             _building = null;
 
-            Debug.Log("Place building");
             return true;
         }
 
@@ -145,6 +144,9 @@ CTRL + Mouse Wheel to rotate.";
             clicklayerMask))
         {
             var building = hit.transform.gameObject.GetComponent<Building>();
+
+            if (building is null) return false;
+            
             cursorText.text = building.displayName;
             cursorImage.sprite = hoverSprite;
 
