@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class Entity : MonoBehaviour
@@ -15,6 +16,7 @@ public class Entity : MonoBehaviour
 
     public Occupation occupation;
     public float currentHealth = 50;
+    public float lastHealth = 0;
     public float maxHealth = 100;
     public float baseAttack = 10;
     public float baseDefence = 0;
@@ -31,16 +33,66 @@ public class Entity : MonoBehaviour
     public AudioClip attackClip;
     private AudioSource _audioSource;
 
+    private Texture2D _healthBarTexture;
+
+    private void Awake()
+    {
+        _healthBarTexture = new Texture2D(100, 20);
+        GetComponentInChildren<Canvas>().GetComponentInChildren<RawImage>().texture = _healthBarTexture;
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         InvokeRepeating(nameof(TimedUpdate), 0, 0.1f);
+        var healthPercent = (int) (currentHealth / maxHealth * _healthBarTexture.width);
+
+        for (var y = 0; y < _healthBarTexture.height; ++y)
+        {
+            for (var x = 0; x < healthPercent; ++x)
+            {
+                _healthBarTexture.SetPixel(x, y, Color.green);
+            }
+        }
+
+        for (var y = 0; y < _healthBarTexture.height; ++y)
+        {
+            for (var x = healthPercent; x < _healthBarTexture.width; ++x)
+            {
+                _healthBarTexture.SetPixel(x, y, Color.grey);
+            }
+        }
+
+        _healthBarTexture.Apply();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (Math.Abs(currentHealth - lastHealth) > float.Epsilon)
+        {
+            var healthPercent = (int) (currentHealth / maxHealth * _healthBarTexture.width);
+
+            for (var y = 0; y < _healthBarTexture.height; ++y)
+            {
+                for (var x = 0; x < healthPercent; ++x)
+                {
+                    _healthBarTexture.SetPixel(x, y, Color.green);
+                }
+            }
+
+            for (var y = 0; y < _healthBarTexture.height; ++y)
+            {
+                for (var x = healthPercent; x < _healthBarTexture.width; ++x)
+                {
+                    _healthBarTexture.SetPixel(x, y, Color.grey);
+                }
+            }
+
+            _healthBarTexture.Apply();
+            lastHealth = currentHealth;
+        }
     }
 
     private void FixedUpdate()
@@ -75,9 +127,9 @@ public class Entity : MonoBehaviour
     {
         if (!currentTarget) return;
         if (currentAttackCooldown != 0) return;
-        
+
         _audioSource.PlayOneShot(attackClip);
-        
+
         // if (!((currentTarget.transform.position - transform.position).sqrMagnitude <= Weapon.AttackRange)) return;
         var target = currentTarget.GetComponent<Entity>();
         currentAttackCooldown = baseAttackCooldown + (Weapon?.AttackCooldown ?? 0);
@@ -117,7 +169,8 @@ public class Entity : MonoBehaviour
                 // transform.position = Vector3.MoveTowards(transform.position,
                 //     GameManager.Instance.Town.transform.position, GetMoveSpeed());
                 var direction = (GameManager.Instance.Town.transform.position - transform.position).normalized;
-                GetComponent<Rigidbody>().MovePosition(transform.position + direction * Time.deltaTime * GetMoveSpeed());
+                GetComponent<Rigidbody>()
+                    .MovePosition(transform.position + direction * Time.deltaTime * GetMoveSpeed());
                 switch (occupation)
                 {
                     case Occupation.Player:
@@ -156,7 +209,8 @@ public class Entity : MonoBehaviour
                 // transform.position = Vector3.MoveTowards(transform.position,
                 //     targetPosition, GetMoveSpeed());
                 var direction = (targetPosition - transform.position).normalized;
-                GetComponent<Rigidbody>().MovePosition(transform.position + direction * Time.deltaTime * GetMoveSpeed());
+                GetComponent<Rigidbody>()
+                    .MovePosition(transform.position + direction * Time.deltaTime * GetMoveSpeed());
 
                 var distance = Vector3.Distance(transform.position, targetPosition);
                 if (distance < 2)
