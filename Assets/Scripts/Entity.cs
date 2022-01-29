@@ -27,6 +27,8 @@ public class Entity : MonoBehaviour
     public TaskType currentTask = TaskType.Idle;
     public GameObject currentTarget;
 
+    public AudioClip attackClip;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -66,6 +68,9 @@ public class Entity : MonoBehaviour
     {
         if (!currentTarget) return;
         if (currentAttackCooldown != 0) return;
+        
+        AudioManager.Instance.PlayOneShot(attackClip);
+        
         // if (!((currentTarget.transform.position - transform.position).sqrMagnitude <= Weapon.AttackRange)) return;
         var target = currentTarget.GetComponent<Entity>();
         currentAttackCooldown = baseAttackCooldown + (Weapon?.AttackCooldown ?? 0);

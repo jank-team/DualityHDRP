@@ -28,7 +28,10 @@ public class RaycastClick : MonoBehaviour
             cursorText.text = building.displayName;
             cursorImage.sprite = hoverSprite;
 
-            if (Input.GetKeyDown(KeyCode.Mouse0)) building.OpenOverlay();
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                building.OpenOverlay();
+            }
         }
         else
         {
