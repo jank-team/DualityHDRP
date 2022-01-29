@@ -135,6 +135,11 @@ public class Entity : MonoBehaviour
         currentAttackCooldown = baseAttackCooldown + (Weapon?.AttackCooldown ?? 0);
         target.currentHealth -= GetAttack() + target.GetDefence();
 
+        if (target.occupation == Occupation.Resource)
+        {
+            resource = Convert.ToInt32(GetAttack());
+        }
+
         if (target.currentHealth <= 0)
         {
             currentTarget = null;
@@ -176,7 +181,13 @@ public class Entity : MonoBehaviour
                     case Occupation.Player:
                     case Occupation.Worker:
                     {
-                        // @todo drop resource
+                        GameManager.Instance.Town.GetComponent<Town>().balance += resource;
+                        resource = 0;
+
+                        if (occupation == Occupation.Player){
+                            UpgradeItems();
+                        }
+
                     }
                         break;
                     case Occupation.Monster:
@@ -299,5 +310,25 @@ public class Entity : MonoBehaviour
     private void FindTarget()
     {
         currentTarget = FindNearestTarget();
+    }
+
+    private void UpgradeItems(){
+
+        Building weaponSmith = GameManager.Instance.WeaponSmith.GetComponent<Building>();
+        
+        Building armorSmith = GameManager.Instance.ArmorSmith.GetComponent<Building>();
+
+        Town town = GameManager.Instance.Town.GetComponent<Town>();
+
+        Weapon = (Weapon)weaponSmith
+            .GetItems().Where(arg => arg.Value < town.balance/2)
+            .OrderByDescending(item => item.Value).First();
+
+        Armor = (Armor)armorSmith.GetItems()
+            .Where(arg => arg.Value < town.balance/2)
+            .OrderByDescending(item => item.Value).First();
+        
+        town.balance = town.balance - Weapon.Value - Armor.Value;
+        
     }
 }

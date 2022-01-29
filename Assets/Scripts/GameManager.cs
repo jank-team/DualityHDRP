@@ -11,11 +11,20 @@ public class GameManager : MonoBehaviour
     public int nightLength = 300;
     public int currentTime = 0;
 
+    public GameObject WeaponSmith{get; private set; }
+
+    public GameObject ArmorSmith{get; private set;}
+
     private void Awake()
     {
         Instance = this;
 
         Town = GameObject.FindWithTag("Town");
+
+        WeaponSmith = GameObject.FindWithTag("WeaponSmith");
+
+        ArmorSmith = GameObject.FindWithTag("ArmorSmith");
+        
         EntityFactory = GetComponent<EntityFactory>();
     }
 
