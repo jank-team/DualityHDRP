@@ -1,4 +1,4 @@
 public class Armor : Item
 {
-    public double Defence;
+    public float Defence;
 }

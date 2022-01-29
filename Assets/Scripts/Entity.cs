@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -13,34 +14,47 @@ public class Entity : MonoBehaviour
     }
 
     public Occupation occupation;
-    public double currentHealth = 50;
-    public double maxHealth = 100;
-    public double baseAttack = 10;
-    public double baseDefence = 0;
-    [CanBeNull] public Weapon Weapon;
-    [CanBeNull] public Armor Armor;
+    public float currentHealth = 50;
+    public float maxHealth = 100;
+    public float baseAttack = 10;
+    public float baseDefence = 0;
+    public float baseMoveSpeed = 0.05f;
+    public Weapon Weapon;
+    public Armor Armor;
     public int resource = 0;
-    public double balance = 100;
+    public float balance = 100;
     public TaskType currentTask = TaskType.Idle;
+    public GameObject currentTarget;
 
     // Start is called before the first frame update
     private void Start()
     {
+        InvokeRepeating(nameof(TimedUpdate), 0, 1.0f);
     }
 
     // Update is called once per frame
     private void Update()
     {
+        DoTask();
     }
 
-    private double GetAttack()
+    private void TimedUpdate()
+    {
+    }
+
+    private float GetAttack()
     {
         return baseAttack + Weapon?.Attack ?? 0;
     }
 
-    private double GetDefence()
+    private float GetDefence()
     {
         return baseDefence + Armor?.Defence ?? 0;
+    }
+
+    private float GetMoveSpeed()
+    {
+        return baseMoveSpeed;
     }
 
     private void Attack(Entity target)
@@ -73,10 +87,19 @@ public class Entity : MonoBehaviour
                         break;
                     case TaskType.GotoTown:
                     {
+                        transform.position = Vector3.MoveTowards(transform.position,
+                            GameManager.Instance.Town.transform.position, GetMoveSpeed());
                     }
                         break;
                     case TaskType.GotoTarget:
                     {
+                        if (!currentTarget)
+                        {
+                            FindTarget();
+                        }
+
+                        transform.position = Vector3.MoveTowards(transform.position,
+                            currentTarget.transform.position, GetMoveSpeed());
                     }
                         break;
                     case TaskType.AttackTarget:
@@ -101,10 +124,19 @@ public class Entity : MonoBehaviour
                         break;
                     case TaskType.GotoTown:
                     {
+                        transform.position = Vector3.MoveTowards(transform.position,
+                            GameManager.Instance.Town.transform.position, GetMoveSpeed());
                     }
                         break;
                     case TaskType.GotoTarget:
                     {
+                        if (!currentTarget)
+                        {
+                            FindTarget();
+                        }
+
+                        transform.position = Vector3.MoveTowards(transform.position,
+                            currentTarget.transform.position, GetMoveSpeed());
                     }
                         break;
                     case TaskType.AttackTarget:
@@ -129,10 +161,19 @@ public class Entity : MonoBehaviour
                         break;
                     case TaskType.GotoTown:
                     {
+                        transform.position = Vector3.MoveTowards(transform.position,
+                            GameManager.Instance.Town.transform.position, GetMoveSpeed());
                     }
                         break;
                     case TaskType.GotoTarget:
                     {
+                        if (!currentTarget)
+                        {
+                            FindTarget();
+                        }
+
+                        transform.position = Vector3.MoveTowards(transform.position,
+                            currentTarget.transform.position, GetMoveSpeed());
                     }
                         break;
                     case TaskType.AttackTarget:
@@ -221,5 +262,29 @@ public class Entity : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void FindTarget()
+    {
+        var position = transform.position;
+        string targetTag;
+        switch (occupation)
+        {
+            case Occupation.Player:
+                targetTag = "Monster";
+                break;
+            case Occupation.Monster:
+                targetTag = "Player";
+                break;
+            case Occupation.Worker:
+                targetTag = "Resource";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        currentTarget = GameObject.FindGameObjectsWithTag(targetTag)
+            .OrderBy(o => (o.transform.position - position).sqrMagnitude)
+            .FirstOrDefault();
     }
 }
