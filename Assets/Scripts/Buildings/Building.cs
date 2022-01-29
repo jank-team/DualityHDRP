@@ -24,6 +24,7 @@ public class Building : MonoBehaviour, IBuilding
 
     private DropPool<Item> _dropPool;
     private int _level;
+    private bool _isOverlayOpen;
 
     private readonly Dictionary<DropList, List<Item>> _dropPools = new Dictionary<DropList, List<Item>>()
     {
@@ -120,10 +121,15 @@ public class Building : MonoBehaviour, IBuilding
         closeOverlayBackgroundButton.onClick.AddListener(CloseOverlay);
     }
 
-    private void OpenOverlay()
+    public void OpenOverlay()
     {
+        if (_isOverlayOpen) return;
         UpdateOverlay();
+        Camera.main.GetComponent<FreeFlyCamera>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         overlay.enabled = true;
+        _isOverlayOpen = true;
     }
 
     private void UpdateOverlay()
@@ -139,5 +145,7 @@ public class Building : MonoBehaviour, IBuilding
     private void CloseOverlay()
     {
         overlay.enabled = false;
+        _isOverlayOpen = false;
+        Camera.main.GetComponent<FreeFlyCamera>().enabled = true;
     }
 }

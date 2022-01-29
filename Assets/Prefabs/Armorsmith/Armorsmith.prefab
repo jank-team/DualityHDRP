@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4626588582168537074}
   - component: {fileID: 4626588582168537075}
   - component: {fileID: 4626588582168537073}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4626588582272062364}
   - component: {fileID: 4626588582272062355}
   - component: {fileID: 4626588582272062354}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ContentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 4626588582849473542}
   - component: {fileID: 4626588582849473543}
   - component: {fileID: 4626588582849473536}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: OpenOverlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,14 +265,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4626588582849473538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4626588583675615510}
   m_Father: {fileID: 4626588584269410512}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 4626588582902127378}
   - component: {fileID: 4626588582902127379}
   - component: {fileID: 4626588582902127388}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: OverlayCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 4626588582936285310}
   - component: {fileID: 4626588582936285311}
   - component: {fileID: 4626588582936285304}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: BackgroundCloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 4626588582955330844}
   - component: {fileID: 4626588582955330845}
   - component: {fileID: 4626588582955330846}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4626588583102286078}
   - component: {fileID: 8269427518560469475}
-  m_Layer: 0
+  - component: {fileID: 885421511759587503}
+  m_Layer: 10
   m_Name: Armorsmith
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,6 +774,19 @@ MonoBehaviour:
   - {fileID: 9219857820214806840}
   - {fileID: 4852504134588707145, guid: 721fdb58653b1da44ad0b84dff663ec0, type: 3}
   currentPrefab: {fileID: 9219857820214806840}
+--- !u!65 &885421511759587503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626588583102286075}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15, y: 20, z: 15}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4626588583251912795
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +799,7 @@ GameObject:
   - component: {fileID: 4626588583251912792}
   - component: {fileID: 4626588583251912793}
   - component: {fileID: 4626588583251912799}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +919,7 @@ GameObject:
   - component: {fileID: 4626588583316992944}
   - component: {fileID: 4626588583316992950}
   - component: {fileID: 4626588583316992951}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1053,7 @@ GameObject:
   - component: {fileID: 4626588583365767590}
   - component: {fileID: 4626588583365767589}
   - component: {fileID: 4626588583365767588}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1173,7 +1187,7 @@ GameObject:
   - component: {fileID: 4626588583426499155}
   - component: {fileID: 4626588583426499153}
   - component: {fileID: 4626588583426499154}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1246,7 +1260,7 @@ GameObject:
   - component: {fileID: 4626588583675615510}
   - component: {fileID: 4626588583675615508}
   - component: {fileID: 4626588583675615509}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1303,14 +1317,14 @@ MonoBehaviour:
   m_text: Armorsmith
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1327,7 +1341,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2.5
+  m_fontSize: 1.4
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1363,7 +1377,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.1, y: 0, z: 0.1, w: 0}
+  m_margin: {x: 0.5, y: 0.2, z: 0.5, w: 0.2}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1380,7 +1394,7 @@ GameObject:
   - component: {fileID: 4626588583832171727}
   - component: {fileID: 4626588583832171725}
   - component: {fileID: 4626588583832171726}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1529,8 @@ GameObject:
   - component: {fileID: 4626588584269410517}
   - component: {fileID: 4626588584269410518}
   - component: {fileID: 4626588584269410519}
-  m_Layer: 5
+  - component: {fileID: 6231717544414714353}
+  m_Layer: 10
   m_Name: WorldCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1529,8 +1544,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4626588584269410513}
-  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 4.71}
+  m_LocalRotation: {x: -0, y: 0.9861058, z: 0.16611868, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4626588582849473537}
@@ -1539,8 +1554,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.07, y: 7.84}
-  m_SizeDelta: {x: 15, y: 4.69}
+  m_AnchoredPosition: {x: 0, y: 7}
+  m_SizeDelta: {x: 10, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4626588584269410517
 Canvas:
@@ -1603,6 +1618,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6231717544414714353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626588584269410513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189135aead1ba294895e052279ce07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5257543536145076332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1610,6 +1637,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4626588583102286078}
     m_Modifications:
+    - target: {fileID: 559056150622957112, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791313239821932825, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2973910093212033038, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1657,6 +1692,30 @@ PrefabInstance:
     - target: {fileID: 3964584028326517076, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
       propertyPath: m_Name
       value: level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964584028326517076, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423309487030216654, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454979882663339999, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649149173327473919, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789110588821079246, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050436640256584481, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24da88d06fff96b4eb50ab81923f75d9, type: 3}
