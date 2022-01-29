@@ -7,8 +7,7 @@ public class CameraMovement : MonoBehaviour
 
     public float speed = 12f;
     private InputAction movement;
-
-    private Vector3 velocity;
+    private InputAction verticalMovement;
 
     private void Start()
     {
@@ -22,7 +21,13 @@ public class CameraMovement : MonoBehaviour
             .With("Left", "<Keyboard>/leftArrow")
             .With("Right", "<Keyboard>/d")
             .With("Right", "<Keyboard>/rightArrow");
+        
+        verticalMovement = new InputAction("VerticalMovement");
+        verticalMovement.AddCompositeBinding("1DAxis")
+            .With("Positive", "<Keyboard>/space")
+            .With("Negative", "<Keyboard>/shift");
 
+        verticalMovement.Enable();
         movement.Enable();
     }
 
@@ -32,6 +37,16 @@ public class CameraMovement : MonoBehaviour
         float x;
         float z;
 
+        var verticalMovementValue = verticalMovement.ReadValue<int>();
+
+        if (verticalMovementValue > 0)
+        {
+            
+        }  else if (verticalMovementValue < 0)
+        {
+            
+        }
+
         var delta = movement.ReadValue<Vector2>();
         x = delta.x;
         z = delta.y;
@@ -39,7 +54,5 @@ public class CameraMovement : MonoBehaviour
         var move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
-
-        controller.Move(velocity * Time.deltaTime);
     }
 }
