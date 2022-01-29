@@ -1,7 +1,4 @@
-public struct Armor
+public class Armor : Item
 {
-    public string Name;
-    public Rank Rank;
     public double Defence;
-    public double Value;
 }
