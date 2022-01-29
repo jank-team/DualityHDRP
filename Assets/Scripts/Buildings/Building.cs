@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -10,7 +11,7 @@ public class Building : MonoBehaviour, IBuilding
 {
     [FormerlySerializedAs("name")] public string displayName = "Building";
     public DropList dropList = DropList.Weaponsmith;
-    
+
     public Button openOverlayButton;
 
     public Canvas overlay;
@@ -21,18 +22,20 @@ public class Building : MonoBehaviour, IBuilding
     public Button closeOverlayBackgroundButton;
 
     public AudioClip openClip;
-    
+
+
+    public List<int> upgradeCosts = new List<int>
+    {
+        50, 100
+    };
+
     public List<GameObject> levels;
     public GameObject currentPrefab;
 
-    private DropPool<Item> _dropPool;
-    private int _level;
-    private bool _isOverlayOpen;
-
-    private readonly Dictionary<DropList, List<Item>> _dropPools = new Dictionary<DropList, List<Item>>()
+    private readonly Dictionary<DropList, List<Item>> _dropPools = new Dictionary<DropList, List<Item>>
     {
         {
-            DropList.Weaponsmith, new List<Item>()
+            DropList.Weaponsmith, new List<Item>
             {
                 new Weapon
                 {
@@ -51,9 +54,9 @@ public class Building : MonoBehaviour, IBuilding
             }
         },
         {
-            DropList.Armorsmith, new List<Item>()
+            DropList.Armorsmith, new List<Item>
             {
-                new Armor()
+                new Armor
                 {
                     Defence = 1,
                     Name = "Shield",
@@ -70,12 +73,20 @@ public class Building : MonoBehaviour, IBuilding
             }
         }
     };
-    
+
+    private DropPool<Item> _dropPool;
+    private bool _isOverlayOpen;
+    private int _level;
+
+    private TextMeshProUGUI upgradeButtonText;
+
     public void Awake()
     {
+        upgradeButtonText = upgradeButton.GetComponentInChildren<TextMeshProUGUI>();
         _dropPool = new DropPool<Item>(_dropPools[dropList]);
         SetupGui();
         UpdatePrefab();
+        StartCoroutine(UpdateUpgradeButtonState());
     }
 
     public List<Item> GetItems()
@@ -94,6 +105,10 @@ public class Building : MonoBehaviour, IBuilding
     {
         if (_level >= levels.Count - 1) return;
 
+        var upgradeCost = upgradeCosts[_level];
+        if (Town.Instance.balance < upgradeCost) return;
+        Town.Instance.balance -= upgradeCost;
+
         _level += 1;
         UpdateItems();
         UpdatePrefab();
@@ -106,7 +121,6 @@ public class Building : MonoBehaviour, IBuilding
 
         var prefab = levels[_level];
         currentPrefab = Instantiate(prefab, transform.position, Quaternion.identity, transform);
-        
     }
 
     private void SetupGui()
@@ -139,13 +153,6 @@ public class Building : MonoBehaviour, IBuilding
 
     private void UpdateOverlay()
     {
-        upgradeButton.enabled = _level < levels.Count - 1;
-
-        if (!upgradeButton.enabled)
-        {
-            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Max Level";
-        }
-
         overlayTitle.text = $"{displayName} - Level {_level}";
 
         var textContent = string.Join(Environment.NewLine,
@@ -159,5 +166,28 @@ public class Building : MonoBehaviour, IBuilding
         overlay.enabled = false;
         _isOverlayOpen = false;
         Camera.main.GetComponent<FreeFlyCamera>().enabled = true;
+    }
+
+    private IEnumerator UpdateUpgradeButtonState()
+    {
+        while (true)
+        {
+            if (_isOverlayOpen)
+            {
+                if (_level < levels.Count - 1)
+                {
+                    var balance = Town.Instance.balance;
+                    var upgradeCost = upgradeCosts[_level];
+                    upgradeButtonText.text = $"Upgrade (${upgradeCost})";
+                    upgradeButton.enabled = balance >= upgradeCost;
+                }
+                else
+                {
+                    upgradeButtonText.text = "Max Level";
+                }
+            }
+
+            yield return new WaitForSeconds(.1f);
+        }
     }
 }

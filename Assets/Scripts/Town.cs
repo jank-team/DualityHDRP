@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class Town : MonoBehaviour
 {
+    public static Town Instance { get; private set; }
+    private Town _instance;
+    
     public int resource = 0;
     public float balance = 0;
 
-    // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
-        
-    }
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }
