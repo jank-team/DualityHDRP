@@ -161,7 +161,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4722946066553823114}
-  m_LocalRotation: {x: -0, y: 0.9861058, z: 0.16611868, w: 0}
+  m_LocalRotation: {x: 0.031997975, y: 0.92341065, z: 0.078952774, w: -0.37423983}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1365,7 +1365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a86810b7752ef45a1b6b73da8cdf31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Weaponsmith
+  displayName: Weaponsmith
   dropList: 0
   openOverlayButton: {fileID: 4722946067314459483}
   overlay: {fileID: 4722946067334165577}
@@ -1377,6 +1377,7 @@ MonoBehaviour:
   levels:
   - {fileID: 7686505325466162383, guid: 3703d7dcc9bc9f544935d574aeb7f08f, type: 3}
   - {fileID: 4987243739655653163, guid: cf12fb48dbe1e19438f01529cef822c3, type: 3}
+  - {fileID: 5340623016705891342, guid: c8ec1c70977adae48be64d1d449a21b7, type: 3}
   currentPrefab: {fileID: 381042360501113962}
 --- !u!65 &1541292667561592083
 BoxCollider:
@@ -1389,8 +1390,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15, y: 20, z: 15}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 15, y: 10, z: 15}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &4722946067707791526
 GameObject:
   m_ObjectHideFlags: 0

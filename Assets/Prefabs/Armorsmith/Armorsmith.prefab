@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a86810b7752ef45a1b6b73da8cdf31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Armorsmith
+  displayName: Armorsmith
   dropList: 1
   openOverlayButton: {fileID: 4626588582849473536}
   overlay: {fileID: 4626588582902127378}
@@ -773,6 +773,7 @@ MonoBehaviour:
   levels:
   - {fileID: 9219857820214806840}
   - {fileID: 4852504134588707145, guid: 721fdb58653b1da44ad0b84dff663ec0, type: 3}
+  - {fileID: 38684807500329006, guid: 46ff6ada26eee89459086ba16d357b86, type: 3}
   currentPrefab: {fileID: 9219857820214806840}
 --- !u!65 &885421511759587503
 BoxCollider:
@@ -785,8 +786,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15, y: 20, z: 15}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 15, y: 10, z: 15}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &4626588583251912795
 GameObject:
   m_ObjectHideFlags: 0
