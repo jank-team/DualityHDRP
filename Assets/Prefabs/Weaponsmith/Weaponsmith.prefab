@@ -1374,6 +1374,7 @@ MonoBehaviour:
   upgradeButton: {fileID: 4722946066643552004}
   closeOverlayButton: {fileID: 4722946067420381765}
   closeOverlayBackgroundButton: {fileID: 4722946067368132387}
+  openClip: {fileID: 0}
   levels:
   - {fileID: 7686505325466162383, guid: 3703d7dcc9bc9f544935d574aeb7f08f, type: 3}
   - {fileID: 4987243739655653163, guid: cf12fb48dbe1e19438f01529cef822c3, type: 3}

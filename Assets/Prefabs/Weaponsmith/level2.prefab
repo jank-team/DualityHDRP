@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6657517795786855904}
   - component: {fileID: 212849239429692748}
   - component: {fileID: 1511050245215869915}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 4400536627144426887}
   - component: {fileID: 624352236768187304}
   - component: {fileID: 1454139168594209505}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: stone_ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 1386266584287182581}
   - component: {fileID: 4885502756553796101}
   - component: {fileID: 1928211069628591547}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 2358561455259832807}
   - component: {fileID: 760718310656057244}
   - component: {fileID: 1356291312102561687}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 9039961198104420991}
   - component: {fileID: 643533273903308880}
   - component: {fileID: 4479421782273589248}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 6023205353035683895}
   - component: {fileID: 2590418149793477170}
   - component: {fileID: 4652231392701963784}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 254179167918405459}
   - component: {fileID: 3930236813790511783}
   - component: {fileID: 3075375558627125743}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: farm_house_lvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 2541866606920581924}
   - component: {fileID: 9109156921982818764}
   - component: {fileID: 6769985075238067703}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 9095992699333368031}
   - component: {fileID: 1238872674018284496}
   - component: {fileID: 4430389498594412950}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 6678976440711387038}
   - component: {fileID: 8735211676969463081}
   - component: {fileID: 7789454874956544778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: shovel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -982,7 +982,7 @@ GameObject:
   - component: {fileID: 6434050617589852700}
   - component: {fileID: 611118052045294079}
   - component: {fileID: 7821413574937127475}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1083,7 +1083,7 @@ GameObject:
   - component: {fileID: 3425337946549564267}
   - component: {fileID: 7284801147869182235}
   - component: {fileID: 4648647064237827952}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1181,7 +1181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6590530507136286321}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1229,7 +1229,7 @@ GameObject:
   - component: {fileID: 4938518901490920663}
   - component: {fileID: 1020241364485983500}
   - component: {fileID: 2196178500072341049}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: farm_house_lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1330,7 +1330,7 @@ GameObject:
   - component: {fileID: 5016061946500550991}
   - component: {fileID: 1284488630844384248}
   - component: {fileID: 1095462617075985074}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1430,7 +1430,7 @@ GameObject:
   - component: {fileID: 1822401861519918001}
   - component: {fileID: 4691363188036426308}
   - component: {fileID: 7279800182649829096}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

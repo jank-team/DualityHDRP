@@ -11,6 +11,7 @@ public class FaceCamera : MonoBehaviour
     private void Awake()
     {
         _cameraTransform = Camera.main.transform;
+        transform.LookAt(_cameraTransform);
     }
 
     void FixedUpdate()

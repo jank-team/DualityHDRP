@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 711499145195206078}
   - component: {fileID: 700326824160616566}
   - component: {fileID: 692377675163275586}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_well_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1539302054279710871}
   - component: {fileID: 5020805303250574439}
   - component: {fileID: 2063722635199601625}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 6194428979003076181}
   - component: {fileID: 2707422692664624208}
   - component: {fileID: 5112072388487063658}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6708100233039628307}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 4821268102574135989}
   - component: {fileID: 597027188577516398}
   - component: {fileID: 1737217070939506779}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: farm_house_lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 2246110783267583443}
   - component: {fileID: 5150606126507633702}
   - component: {fileID: 7162617587847381130}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,6 +477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: barrel (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -550,6 +554,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: c1491311318644f4686d01746b0851bf, type: 3}
       propertyPath: m_Name
       value: house_lvl4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c1491311318644f4686d01746b0851bf, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c1491311318644f4686d01746b0851bf, type: 3}
       propertyPath: m_RootOrder
@@ -625,6 +633,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: barrel (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -698,6 +710,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
       propertyPath: m_Name
       value: barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
       propertyPath: m_RootOrder
@@ -773,6 +789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: barrel (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -846,6 +866,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
       propertyPath: m_Name
       value: barrel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6f3f657341527b54db0e9162793f38d1, type: 3}
       propertyPath: m_RootOrder
