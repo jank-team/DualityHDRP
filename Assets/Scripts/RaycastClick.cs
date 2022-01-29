@@ -25,7 +25,7 @@ public class RaycastClick : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 100, layerMask))
         {
             var building = hit.transform.gameObject.GetComponent<Building>();
-            cursorText.text = building.name;
+            cursorText.text = building.displayName;
             cursorImage.sprite = hoverSprite;
 
             if (Input.GetKeyDown(KeyCode.Mouse0)) building.OpenOverlay();

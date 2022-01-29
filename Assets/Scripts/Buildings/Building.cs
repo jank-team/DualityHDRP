@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Building : MonoBehaviour, IBuilding
 {
-    public string name = "Building";
+    [FormerlySerializedAs("name")] public string displayName = "Building";
     public DropList dropList = DropList.Weaponsmith;
     
     public Button openOverlayButton;
@@ -112,11 +113,11 @@ public class Building : MonoBehaviour, IBuilding
         var worldCanvas = GetComponentInChildren<Canvas>();
         worldCanvas.worldCamera = Camera.main;
         var openOverlayButtonText = openOverlayButton.GetComponentInChildren<TextMeshProUGUI>();
-        openOverlayButtonText.text = name;
+        openOverlayButtonText.text = displayName;
         openOverlayButton.onClick.AddListener(OpenOverlay);
 
         // Overlay
-        overlayTitle.text = name;
+        overlayTitle.text = displayName;
         upgradeButton.onClick.AddListener(Upgrade);
         closeOverlayButton.onClick.AddListener(CloseOverlay);
         closeOverlayBackgroundButton.onClick.AddListener(CloseOverlay);
@@ -142,7 +143,7 @@ public class Building : MonoBehaviour, IBuilding
             upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Max Level";
         }
 
-        overlayTitle.text = $"{name} - Level {_level}";
+        overlayTitle.text = $"{displayName} - Level {_level}";
 
         var textContent = string.Join(Environment.NewLine,
             GetItems().Select(item => $"{item.Rank} {item.Name} - ${item.Value}"));

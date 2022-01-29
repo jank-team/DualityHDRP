@@ -235,7 +235,6 @@ GameObject:
   - component: {fileID: 287361777}
   - component: {fileID: 287361776}
   - component: {fileID: 287361775}
-  - component: {fileID: 287361778}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -271,7 +270,7 @@ Terrain:
   m_DetailObjectDistance: 147
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
+  m_SplatMapDistance: 814
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
@@ -295,26 +294,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287361774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1000, y: 0, z: -1000}
+  m_LocalPosition: {x: -100, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!182 &287361778
-WindZone:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287361774}
-  m_Enabled: 1
-  m_Mode: 0
-  m_Radius: 20
-  m_WindMain: 1
-  m_WindTurbulence: 1
-  m_WindPulseMagnitude: 0.5
-  m_WindPulseFrequency: 0.01
 --- !u!1001 &364704975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -695,8 +680,8 @@ GameObject:
   - component: {fileID: 786384101}
   - component: {fileID: 786384100}
   - component: {fileID: 786384099}
-  - component: {fileID: 786384096}
   - component: {fileID: 786384097}
+  - component: {fileID: 786384096}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -704,18 +689,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &786384096
-BoxCollider:
+--- !u!135 &786384096
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786384095}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4bdda515fb4c7c34ea77f8fa423c9a39, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &786384097
 MonoBehaviour:

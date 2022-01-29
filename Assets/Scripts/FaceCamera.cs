@@ -13,15 +13,8 @@ public class FaceCamera : MonoBehaviour
         _cameraTransform = Camera.main.transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.LookAt(_cameraTransform);
-    }
-
-    private void OnDrawGizmos()
-    {
-        var direction = (Camera.main.transform.position - transform.position).normalized;
-        Gizmos.DrawRay(transform.position, direction * 100);
     }
 }
