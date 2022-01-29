@@ -3,11 +3,15 @@
 //                        (c) 2019 Sergey Stafeyev                           //
 //===========================================================================//
 
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 public class FreeFlyCamera : MonoBehaviour
 {
+    public float minY = 0.5f;
+    public Bounds bounds = new Bounds(Vector3.zero, new Vector3(100, 100, 100));
+    
     #region UI
 
     [Space]
@@ -188,7 +192,13 @@ public class FreeFlyCamera : MonoBehaviour
             // Calc acceleration
             CalculateCurrentIncrease(deltaPosition != Vector3.zero);
 
-            transform.position += deltaPosition * currentSpeed * _currentIncrease;
+            var newPosition = transform.position + deltaPosition * currentSpeed * _currentIncrease;
+
+            newPosition.x = Mathf.Clamp(newPosition.x, bounds.center.x - bounds.size.x, bounds.center.x + bounds.size.x);
+            newPosition.y = Mathf.Clamp(newPosition.y, minY, bounds.center.y + bounds.size.y);
+            newPosition.z = Mathf.Clamp(newPosition.z, bounds.center.z - bounds.size.z, bounds.center.z + bounds.size.z);
+
+            transform.position = newPosition;
         }
 
         // Rotation
