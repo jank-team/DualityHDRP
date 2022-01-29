@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-public interface IBuilding<T>
+public interface IBuilding
 {
-    List<T> GetItems();
+    List<Item> GetItems();
     void UpdateItems();
     void Upgrade();
 }

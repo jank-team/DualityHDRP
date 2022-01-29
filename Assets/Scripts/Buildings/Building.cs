@@ -5,12 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
-public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
+public class Building : MonoBehaviour, IBuilding
 {
     public string name = "Building";
+    public DropList dropList = DropList.Weaponsmith;
+    
     public Button openOverlayButton;
-    public TextMeshProUGUI buttonText;
 
     public Canvas overlay;
     public TextMeshProUGUI overlayTitle;
@@ -19,16 +19,43 @@ public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
     public Button closeOverlayButton;
     public Button closeOverlayBackgroundButton;
 
-    private DropPool<T> _dropPool;
+    public List<GameObject> levels;
+    public GameObject currentPrefab;
+
+    private DropPool<Item> _dropPool;
     private int _level;
 
+    private readonly Dictionary<DropList, List<Item>> _dropPools = new Dictionary<DropList, List<Item>>()
+    {
+        {
+            DropList.Weaponsmith, new List<Item>()
+            {
+                new Weapon
+                {
+                    Attack = 1,
+                    Name = "Stick",
+                    Rank = Rank.Common,
+                    Value = 10
+                },
+                new Weapon
+                {
+                    Attack = 2,
+                    Name = "Big Stick",
+                    Rank = Rank.Rare,
+                    Value = 20
+                }
+            }
+        }
+    };
+    
     public void Awake()
     {
-        _dropPool = GetDropPool();
+        _dropPool = new DropPool<Item>(_dropPools[dropList]);
         SetupGui();
+        UpdatePrefab();
     }
 
-    public List<T> GetItems()
+    public List<Item> GetItems()
     {
         return _dropPool.CurrentItems;
     }
@@ -42,13 +69,27 @@ public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
 
     public void Upgrade()
     {
+        if (_level >= levels.Count - 1) return;
+
         _level += 1;
         UpdateItems();
+        UpdatePrefab();
+    }
+
+    private void UpdatePrefab()
+    {
+        if (currentPrefab != null) Destroy(currentPrefab);
+
+        var prefab = levels[_level];
+        currentPrefab = Instantiate(prefab, transform.position, Quaternion.identity, transform);
+        
     }
 
     private void SetupGui()
     {
         // In-world
+        var worldCanvas = GetComponentInChildren<Canvas>();
+        worldCanvas.worldCamera = Camera.main;
         var openOverlayButtonText = openOverlayButton.GetComponentInChildren<TextMeshProUGUI>();
         openOverlayButtonText.text = name;
         openOverlayButton.onClick.AddListener(OpenOverlay);
@@ -68,6 +109,8 @@ public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
 
     private void UpdateOverlay()
     {
+        upgradeButton.enabled = _level < levels.Count - 1;
+
         var textContent = string.Join(Environment.NewLine,
             GetItems().Select(item => $"{item.Rank} {item.Name} - ${item.Value}"));
 
@@ -78,6 +121,4 @@ public abstract class Building<T> : MonoBehaviour, IBuilding<T> where T : Item
     {
         overlay.enabled = false;
     }
-
-    protected abstract DropPool<T> GetDropPool();
 }
