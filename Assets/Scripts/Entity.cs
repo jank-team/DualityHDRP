@@ -136,13 +136,13 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
         currentAttackCooldown = baseAttackCooldown + (Weapon?.AttackCooldown ?? 0);
         _currentTargetEntity.currentHealth -= GetAttack() + _currentTargetEntity.GetDefence();
 
-        if (_currentTargetEntity.occupation == Occupation.Resource)
-        {
-            resource = Convert.ToInt32(GetAttack());
-        }
-
         if (_currentTargetEntity.currentHealth <= 0)
         {
+            if (_currentTargetEntity.occupation == Occupation.Resource)
+            {
+                resource += _currentTargetEntity.resource;
+            }
+
             currentTarget = null;
             _currentTargetEntity.Kill();
         }
@@ -187,13 +187,13 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
                     case Occupation.Player:
                     case Occupation.Worker:
                     {
-                        GameManager.Instance.Town.GetComponent<Town>().balance += resource;
+                        GameManager.Instance.Town.GetComponent<Town>().resource += resource;
                         resource = 0;
 
-                        if (occupation == Occupation.Player){
+                        if (occupation == Occupation.Player)
+                        {
                             UpgradeItems();
                         }
-
                     }
                         break;
                     case Occupation.Monster:
@@ -316,27 +316,52 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
     private void FindTarget()
     {
         currentTarget = FindNearestTarget();
-        _currentTargetEntity = currentTarget.GetComponent<Entity>();
+        if (currentTarget)
+        {
+            _currentTargetEntity = currentTarget.GetComponent<Entity>();
+        }
     }
 
-    private void UpgradeItems(){
+    private void UpgradeItems()
+    {
+        var weaponSmith = GameManager.Instance.WeaponSmith.GetComponent<Building>();
 
-        Building weaponSmith = GameManager.Instance.WeaponSmith.GetComponent<Building>();
-        
-        Building armorSmith = GameManager.Instance.ArmorSmith.GetComponent<Building>();
+        var armorSmith = GameManager.Instance.ArmorSmith.GetComponent<Building>();
 
-        Town town = GameManager.Instance.Town.GetComponent<Town>();
+        var town = GameManager.Instance.Town.GetComponent<Town>();
 
-        Weapon = (Weapon)weaponSmith
-            .GetItems().Where(arg => arg.Value < town.balance/2)
-            .OrderByDescending(item => item.Value).First();
+        Weapon newWeapon = null;
+        Armor newArmor = null;
 
-        Armor = (Armor)armorSmith.GetItems()
-            .Where(arg => arg.Value < town.balance/2)
-            .OrderByDescending(item => item.Value).First();
-        
-        town.balance = town.balance - Weapon.Value - Armor.Value;
-        
+        foreach (var weapon in weaponSmith
+                     .GetItems()
+                     .Where(arg => arg.Value < balance / 2)
+                     .OrderByDescending(item => item.Value))
+        {
+            newWeapon = (Weapon) weapon;
+        }
+
+        foreach (var armor in armorSmith
+                     .GetItems()
+                     .Where(arg => arg.Value < balance / 2)
+                     .OrderByDescending(item => item.Value))
+        {
+            newArmor = (Armor) armor;
+        }
+
+        if (newWeapon != null)
+        {
+            town.balance += newWeapon.Value;
+            balance -= newWeapon.Value;
+            Weapon = newWeapon;
+        }
+
+        if (newArmor != null)
+        {
+            town.balance += newArmor.Value;
+            balance -= newArmor.Value;
+            Armor = newArmor;
+        }
     }
 
     private List<IObserver<EntityEvent>> _observers = new List<IObserver<EntityEvent>>();
@@ -345,7 +370,7 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
     {
         _observers.ForEach(observer => observer.OnNext(entityEvent));
     }
-    
+
     public IDisposable Subscribe(IObserver<EntityEvent> observer)
     {
         _observers.Add(observer);
@@ -380,10 +405,10 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
                 throw new ArgumentOutOfRangeException();
         }
     }
-    
+
     private class Unsubscriber : IDisposable
     {
-        private List<IObserver<EntityEvent>>_observers;
+        private List<IObserver<EntityEvent>> _observers;
         private IObserver<EntityEvent> _observer;
 
         public Unsubscriber(List<IObserver<EntityEvent>> observers, IObserver<EntityEvent> observer)
