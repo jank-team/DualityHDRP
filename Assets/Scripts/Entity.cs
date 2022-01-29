@@ -17,7 +17,7 @@ public class Entity : MonoBehaviour
     public float maxHealth = 100;
     public float baseAttack = 10;
     public float baseDefence = 0;
-    public float baseMoveSpeed = 0.05f;
+    public float baseMoveSpeed = 500.0f;
     public int baseAttackCooldown = 20;
     public int currentAttackCooldown = 0;
     public Weapon Weapon;
@@ -35,6 +35,10 @@ public class Entity : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
+    {
+    }
+
+    private void FixedUpdate()
     {
         DoTask();
     }
@@ -102,8 +106,10 @@ public class Entity : MonoBehaviour
                 break;
             case TaskType.GotoTown:
             {
-                transform.position = Vector3.MoveTowards(transform.position,
-                    GameManager.Instance.Town.transform.position, GetMoveSpeed());
+                // transform.position = Vector3.MoveTowards(transform.position,
+                //     GameManager.Instance.Town.transform.position, GetMoveSpeed());
+                var direction = (GameManager.Instance.Town.transform.position - transform.position).normalized;
+                GetComponent<Rigidbody>().MovePosition(transform.position + direction * Time.deltaTime * GetMoveSpeed());
                 switch (occupation)
                 {
                     case Occupation.Player:
@@ -131,10 +137,18 @@ public class Entity : MonoBehaviour
                     FindTarget();
                 }
 
+                if (!currentTarget)
+                {
+                    currentTask = TaskType.Idle;
+                    break;
+                }
+
                 var targetPosition = currentTarget.transform.position;
 
-                transform.position = Vector3.MoveTowards(transform.position,
-                    targetPosition, GetMoveSpeed());
+                // transform.position = Vector3.MoveTowards(transform.position,
+                //     targetPosition, GetMoveSpeed());
+                var direction = (targetPosition - transform.position).normalized;
+                GetComponent<Rigidbody>().MovePosition(transform.position + direction * Time.deltaTime * GetMoveSpeed());
 
                 var distance = Vector3.Distance(transform.position, targetPosition);
                 if (distance < 2)
@@ -181,7 +195,9 @@ public class Entity : MonoBehaviour
                 var position = transform.position;
                 var townDistance = Vector3.Distance(position, GameManager.Instance.Town.transform.position);
                 var nearestTarget = FindNearestTarget();
-                var targetDistance = nearestTarget ? Vector3.Distance(position, nearestTarget.transform.position) : float.MaxValue;
+                var targetDistance = nearestTarget
+                    ? Vector3.Distance(position, nearestTarget.transform.position)
+                    : float.MaxValue;
                 currentTask = townDistance < targetDistance ? TaskType.GotoTown : TaskType.GotoTarget;
             }
                 break;
