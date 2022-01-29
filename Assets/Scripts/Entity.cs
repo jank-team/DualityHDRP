@@ -72,122 +72,55 @@ public class Entity : MonoBehaviour
 
     private void DoTask()
     {
-        switch (occupation)
+        // @todo player: find monster => attack monster => find town => tribute loot => buy weapon/armor => repeat
+        // @todo monster: find player => attack player => find town => attack town
+        // @todo worker: find resource => pick resource => back to town => repeat
+        // @todo resource: wait to be killed
+        switch (currentTask)
         {
-            case Occupation.Player:
+            case TaskType.Idle:
             {
-                // @todo find monster => attack monster => find town => tribute loot => buy weapon/armor => repeat
-                switch (currentTask)
+                // @todo find new task
+                if (occupation != Occupation.Resource)
                 {
-                    case TaskType.Idle:
-                    {
-                        // @todo find new task
-                        FindTask();
-                    }
-                        break;
-                    case TaskType.GotoTown:
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position,
-                            GameManager.Instance.Town.transform.position, GetMoveSpeed());
-                    }
-                        break;
-                    case TaskType.GotoTarget:
-                    {
-                        if (!currentTarget)
-                        {
-                            FindTarget();
-                        }
-
-                        transform.position = Vector3.MoveTowards(transform.position,
-                            currentTarget.transform.position, GetMoveSpeed());
-                    }
-                        break;
-                    case TaskType.AttackTarget:
-                    {
-                    }
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                    FindTask();
                 }
             }
                 break;
-            case Occupation.Monster:
+            case TaskType.GotoTown:
             {
-                // @todo find player => attack player => find town => attack town
-                switch (currentTask)
+                transform.position = Vector3.MoveTowards(transform.position,
+                    GameManager.Instance.Town.transform.position, GetMoveSpeed());
+            }
+                break;
+            case TaskType.GotoTarget:
+            {
+                if (!currentTarget)
                 {
-                    case TaskType.Idle:
-                    {
-                        // @todo find new task
-                        FindTask();
-                    }
-                        break;
-                    case TaskType.GotoTown:
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position,
-                            GameManager.Instance.Town.transform.position, GetMoveSpeed());
-                    }
-                        break;
-                    case TaskType.GotoTarget:
-                    {
-                        if (!currentTarget)
-                        {
-                            FindTarget();
-                        }
+                    FindTarget();
+                }
 
-                        transform.position = Vector3.MoveTowards(transform.position,
-                            currentTarget.transform.position, GetMoveSpeed());
-                    }
-                        break;
-                    case TaskType.AttackTarget:
-                    {
-                    }
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                var targetPosition = currentTarget.transform.position;
+
+                transform.position = Vector3.MoveTowards(transform.position,
+                    targetPosition, GetMoveSpeed());
+
+                var distance = Vector3.Distance(transform.position, targetPosition);
+                if (distance < 2)
+                {
+                    currentTask = TaskType.AttackTarget;
                 }
             }
                 break;
-            case Occupation.Worker:
+            case TaskType.AttackTarget:
             {
-                // @todo find resource => pick resource => back to town => repeat
-                switch (currentTask)
+                var targetPosition = currentTarget.transform.position;
+                var distance = Vector3.Distance(transform.position, targetPosition);
+                if (distance > 2)
                 {
-                    case TaskType.Idle:
-                    {
-                        // @todo find new task
-                        FindTask();
-                    }
-                        break;
-                    case TaskType.GotoTown:
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position,
-                            GameManager.Instance.Town.transform.position, GetMoveSpeed());
-                    }
-                        break;
-                    case TaskType.GotoTarget:
-                    {
-                        if (!currentTarget)
-                        {
-                            FindTarget();
-                        }
-
-                        transform.position = Vector3.MoveTowards(transform.position,
-                            currentTarget.transform.position, GetMoveSpeed());
-                    }
-                        break;
-                    case TaskType.AttackTarget:
-                    {
-                    }
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                    currentTask = TaskType.GotoTarget;
                 }
-            }
-                break;
-            case Occupation.Resource:
-            {
-                // @todo wait to be killed
+                // @todo attack
             }
                 break;
             default:
@@ -200,59 +133,17 @@ public class Entity : MonoBehaviour
         switch (occupation)
         {
             case Occupation.Player:
+            case Occupation.Worker:
             {
-                if (false) // @todo town in range
-                {
-                    currentTask = TaskType.Idle;
-                }
-                else if (resource > 0)
-                {
-                    currentTask = TaskType.GotoTown;
-                }
-                else if (false) // @todo has monster in range
-                {
-                    currentTask = TaskType.AttackTarget;
-                }
-                else
-                {
-                    currentTask = TaskType.GotoTarget;
-                }
+                currentTask = resource > 0 ? TaskType.GotoTown : TaskType.GotoTarget;
             }
                 break;
             case Occupation.Monster:
             {
-                if (false) // @todo player in range
-                {
-                    currentTask = TaskType.AttackTarget;
-                }
-                else if (false) // @todo town is closer
-                {
-                    currentTask = TaskType.GotoTown;
-                }
-                else // @todo player is closer
-                {
-                    currentTask = TaskType.GotoTarget;
-                }
-            }
-                break;
-            case Occupation.Worker:
-            {
-                if (false) // @todo town in range
-                {
-                    currentTask = TaskType.Idle;
-                }
-                else if (resource > 0)
-                {
-                    currentTask = TaskType.GotoTown;
-                }
-                else if (false) // @todo resource in range
-                {
-                    currentTask = TaskType.AttackTarget;
-                }
-                else
-                {
-                    currentTask = TaskType.GotoTarget;
-                }
+                var position = transform.position;
+                var townDistance = Vector3.Distance(position, GameManager.Instance.Town.transform.position);
+                var targetDistance = Vector3.Distance(position, FindNearestTarget().transform.position);
+                currentTask = townDistance < targetDistance ? TaskType.GotoTown : TaskType.GotoTarget;
             }
                 break;
             case Occupation.Resource:
@@ -264,7 +155,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private void FindTarget()
+    private GameObject FindNearestTarget()
     {
         var position = transform.position;
         string targetTag;
@@ -283,8 +174,13 @@ public class Entity : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
 
-        currentTarget = GameObject.FindGameObjectsWithTag(targetTag)
+        return GameObject.FindGameObjectsWithTag(targetTag)
             .OrderBy(o => (o.transform.position - position).sqrMagnitude)
             .FirstOrDefault();
+    }
+
+    private void FindTarget()
+    {
+        currentTarget = FindNearestTarget();
     }
 }
