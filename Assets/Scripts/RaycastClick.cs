@@ -118,11 +118,20 @@ public class RaycastClick : MonoBehaviour
             }
 
             // Valid building placement
-            cursorText.text = @"Left click to place building.
+            cursorImage.sprite = _initialCursorSprite;
+            cursorText.text = $@"${placeableBuilding.cost}
+
+Left click to place building.
 
 Mouse wheel to change building.
 
 CTRL + Mouse Wheel to rotate.";
+            
+            if (Town.Instance.balance < placeableBuilding.cost)
+            {
+                cursorImage.sprite = invalidBuildingPlacementCursorImage;
+                return true;
+            }
 
             if (!Input.GetKeyDown(KeyCode.Mouse0)) return true;
 
@@ -130,6 +139,8 @@ CTRL + Mouse Wheel to rotate.";
             _buildingCollider.enabled = true;
             _buildingCollider = null;
             _building = null;
+
+            Town.Instance.balance -= placeableBuilding.cost;
 
             return true;
         }
@@ -147,7 +158,7 @@ CTRL + Mouse Wheel to rotate.";
             var building = hit.transform.gameObject.GetComponent<Building>();
 
             if (building is null) return false;
-            
+
             cursorText.text = building.displayName;
             cursorImage.sprite = hoverSprite;
 
@@ -167,7 +178,7 @@ CTRL + Mouse Wheel to rotate.";
             var entity = hit.transform.gameObject.GetComponent<Entity>();
 
             if (entity is null) return false;
-            
+
             cursorText.text = $@"{entity.GetDisplayName()}
 
 {entity.GetDescription()}
