@@ -19,6 +19,7 @@ public class RaycastClick : MonoBehaviour
     public Sprite hoverSprite;
     public Image cursorImage;
     public TextMeshProUGUI cursorText;
+    public TextMeshProUGUI instructionText;
 
     public LayerMask groundMask;
     public LayerMask invalidBuildingPlacementMask;
@@ -34,7 +35,7 @@ public class RaycastClick : MonoBehaviour
     private int _buildingIndex;
 
     private Sprite _initialCursorSprite;
-    private bool _isPlacingBuilding;
+    private bool _isBuildingMode;
 
     public void Awake()
     {
@@ -44,6 +45,8 @@ public class RaycastClick : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        var action = _isBuildingMode ? "exit" : "enter";
+        instructionText.text = $"Right click to {action} building mode.";
         if (!CheckPlaceBuilding() && !CheckClickBuilding())
         {
             cursorText.text = null;
@@ -58,9 +61,9 @@ public class RaycastClick : MonoBehaviour
 
     private bool CheckPlaceBuilding()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1)) _isPlacingBuilding = !_isPlacingBuilding;
+        if (Input.GetKeyDown(KeyCode.Mouse1)) _isBuildingMode = !_isBuildingMode;
 
-        if (_isPlacingBuilding)
+        if (_isBuildingMode)
         {
             var isCtrlDown = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
             var mouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
