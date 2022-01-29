@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occupation: 1
   currentHealth: 50
+  lastHealth: 0
   maxHealth: 100
   baseAttack: 10
   baseDefence: 0
@@ -123,7 +124,7 @@ MonoBehaviour:
   balance: 100
   currentTask: 0
   currentTarget: {fileID: 0}
-  attackClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 48db510aa7c1e40869a304e404d93f02, type: 3}
 --- !u!54 &1695475360778002034
 Rigidbody:
   m_ObjectHideFlags: 0
