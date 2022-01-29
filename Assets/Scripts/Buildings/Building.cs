@@ -94,6 +94,7 @@ public class Building : MonoBehaviour, IBuilding
         _level += 1;
         UpdateItems();
         UpdatePrefab();
+        UpdateOverlay();
     }
 
     private void UpdatePrefab()
@@ -135,6 +136,13 @@ public class Building : MonoBehaviour, IBuilding
     private void UpdateOverlay()
     {
         upgradeButton.enabled = _level < levels.Count - 1;
+
+        if (!upgradeButton.enabled)
+        {
+            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Max Level";
+        }
+
+        overlayTitle.text = $"{name} - Level {_level}";
 
         var textContent = string.Join(Environment.NewLine,
             GetItems().Select(item => $"{item.Rank} {item.Name} - ${item.Value}"));
