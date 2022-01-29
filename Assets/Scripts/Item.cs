@@ -2,5 +2,5 @@
 {
     public string Name;
     public Rank Rank;
-    public double Value;
+    public float Value;
 }
