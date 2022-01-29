@@ -1,4 +1,5 @@
 ﻿public enum DropList
 {
-    Weaponsmith
+    Weaponsmith,
+    Armorsmith
 }

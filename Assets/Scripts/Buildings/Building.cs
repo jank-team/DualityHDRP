@@ -45,6 +45,25 @@ public class Building : MonoBehaviour, IBuilding
                     Value = 20
                 }
             }
+        },
+        {
+            DropList.Armorsmith, new List<Item>()
+            {
+                new Armor()
+                {
+                    Defence = 1,
+                    Name = "Shield",
+                    Rank = Rank.Common,
+                    Value = 10
+                },
+                new Armor
+                {
+                    Defence = 2,
+                    Name = "Big Shield",
+                    Rank = Rank.Rare,
+                    Value = 20
+                }
+            }
         }
     };
     
