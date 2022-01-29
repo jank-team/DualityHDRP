@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Town
   - Monster
+  - WeaponSmith
+  - ArmorSmith
   layers:
   - Default
   - TransparentFX

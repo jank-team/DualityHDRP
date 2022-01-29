@@ -62,13 +62,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: MainCamera Profile
+  m_Name: GlobalVolume
   m_EditorClassIdentifier: 
   components:
   - {fileID: 8473612596723414967}
   - {fileID: 7713572530299092608}
   - {fileID: -5641243194869230519}
   - {fileID: 2637595902725583378}
+  - {fileID: 3319188582158996197}
 --- !u!114 &2637595902725583378
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -85,13 +86,13 @@ MonoBehaviour:
   m_AdvancedMode: 0
   quality:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 3
   focusMode:
     m_OverrideState: 1
     m_Value: 2
   focusDistance:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: 100
     min: 0.1
   nearFocusStart:
     m_OverrideState: 1
@@ -116,12 +117,12 @@ MonoBehaviour:
     max: 8
   m_NearMaxBlur:
     m_OverrideState: 1
-    m_Value: 4
+    m_Value: 3.55
     min: 0
     max: 8
   m_FarSampleCount:
     m_OverrideState: 1
-    m_Value: 7
+    m_Value: 3
     min: 3
     max: 16
   m_FarMaxBlur:
@@ -137,6 +138,55 @@ MonoBehaviour:
     m_Value: 2
   m_PhysicallyBased:
     m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &3319188582158996197
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddcec8a8eb2d684d833ac8f5d26aebd, type: 3}
+  m_Name: HDShadowSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  maxShadowDistance:
+    m_OverrideState: 1
+    m_Value: 150
+    min: 0
+  directionalTransmissionMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+    max: 1
+  cascadeShadowSplitCount:
+    m_OverrideState: 0
+    m_Value: 4
+    min: 1
+    max: 4
+  cascadeShadowSplit0:
+    m_OverrideState: 0
+    m_Value: 0.05
+  cascadeShadowSplit1:
+    m_OverrideState: 0
+    m_Value: 0.15
+  cascadeShadowSplit2:
+    m_OverrideState: 0
+    m_Value: 0.3
+  cascadeShadowBorder0:
+    m_OverrideState: 0
+    m_Value: 0
+  cascadeShadowBorder1:
+    m_OverrideState: 0
+    m_Value: 0
+  cascadeShadowBorder2:
+    m_OverrideState: 0
+    m_Value: 0
+  cascadeShadowBorder3:
+    m_OverrideState: 0
     m_Value: 0
 --- !u!114 &7713572530299092608
 MonoBehaviour:

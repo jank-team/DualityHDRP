@@ -26,7 +26,7 @@ public class RaycastClick : MonoBehaviour
 
     [FormerlySerializedAs("layerMask")] public LayerMask clicklayerMask;
 
-    public int reach = 100;
+    public int reach = 150;
 
     public List<PlaceableBuilding> buildings;
     private GameObject _building;
