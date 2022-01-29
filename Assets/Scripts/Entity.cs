@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IObservable<EntityEvent>
 {
     public enum TaskType
     {
@@ -28,6 +29,7 @@ public class Entity : MonoBehaviour
     public int resource = 0;
     public float balance = 100;
     public TaskType currentTask = TaskType.Idle;
+    private Entity _currentTargetEntity;
     public GameObject currentTarget;
 
     public AudioClip attackClip;
@@ -131,24 +133,28 @@ public class Entity : MonoBehaviour
         _audioSource.PlayOneShot(attackClip);
 
         // if (!((currentTarget.transform.position - transform.position).sqrMagnitude <= Weapon.AttackRange)) return;
-        var target = currentTarget.GetComponent<Entity>();
         currentAttackCooldown = baseAttackCooldown + (Weapon?.AttackCooldown ?? 0);
-        target.currentHealth -= GetAttack() + target.GetDefence();
+        _currentTargetEntity.currentHealth -= GetAttack() + _currentTargetEntity.GetDefence();
 
-        if (target.occupation == Occupation.Resource)
+        if (_currentTargetEntity.occupation == Occupation.Resource)
         {
             resource = Convert.ToInt32(GetAttack());
         }
 
-        if (target.currentHealth <= 0)
+        if (_currentTargetEntity.currentHealth <= 0)
         {
             currentTarget = null;
-            target.Kill();
+            _currentTargetEntity.Kill();
         }
     }
 
     private void Kill()
     {
+        NotifyObservers(new EntityEvent()
+        {
+            EventType = EntityEventType.Death,
+            Occupation = occupation
+        });
         Destroy(gameObject);
     }
 
@@ -310,6 +316,7 @@ public class Entity : MonoBehaviour
     private void FindTarget()
     {
         currentTarget = FindNearestTarget();
+        _currentTargetEntity = currentTarget.GetComponent<Entity>();
     }
 
     private void UpgradeItems(){
@@ -331,4 +338,75 @@ public class Entity : MonoBehaviour
         town.balance = town.balance - Weapon.Value - Armor.Value;
         
     }
+
+    private List<IObserver<EntityEvent>> _observers = new List<IObserver<EntityEvent>>();
+
+    private void NotifyObservers(EntityEvent entityEvent)
+    {
+        _observers.ForEach(observer => observer.OnNext(entityEvent));
+    }
+    
+    public IDisposable Subscribe(IObserver<EntityEvent> observer)
+    {
+        _observers.Add(observer);
+        return new Unsubscriber(_observers, observer);
+    }
+
+    public string GetDisplayName()
+    {
+        switch (occupation)
+        {
+            case Occupation.Player:
+                return "Adventurer";
+            default:
+                return occupation.ToString();
+        }
+    }
+
+    public string GetDescription()
+    {
+        switch (currentTask)
+        {
+            case TaskType.Idle:
+                return "Idle";
+            case TaskType.GotoTown:
+                if (occupation == Occupation.Player) return "Returning to town";
+                return "Attacking town";
+            case TaskType.GotoTarget:
+                return $"Engaging {_currentTargetEntity.GetDisplayName()}";
+            case TaskType.AttackTarget:
+                return $"Attacking {_currentTargetEntity.GetDisplayName()}";
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    
+    private class Unsubscriber : IDisposable
+    {
+        private List<IObserver<EntityEvent>>_observers;
+        private IObserver<EntityEvent> _observer;
+
+        public Unsubscriber(List<IObserver<EntityEvent>> observers, IObserver<EntityEvent> observer)
+        {
+            _observers = observers;
+            _observer = observer;
+        }
+
+        public void Dispose()
+        {
+            if (_observer != null && _observers.Contains(_observer))
+                _observers.Remove(_observer);
+        }
+    }
+}
+
+public class EntityEvent
+{
+    public EntityEventType EventType { get; set; }
+    public Occupation Occupation { get; set; }
+}
+
+public enum EntityEventType
+{
+    Death
 }

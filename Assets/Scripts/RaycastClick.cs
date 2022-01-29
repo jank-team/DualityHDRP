@@ -25,6 +25,7 @@ public class RaycastClick : MonoBehaviour
     public LayerMask invalidBuildingPlacementMask;
 
     [FormerlySerializedAs("layerMask")] public LayerMask clicklayerMask;
+    public LayerMask entityLayerMask;
 
     public int reach = 150;
 
@@ -47,7 +48,7 @@ public class RaycastClick : MonoBehaviour
     {
         var action = _isBuildingMode ? "exit" : "enter";
         instructionText.text = $"Right click to {action} building mode.";
-        if (!CheckPlaceBuilding() && !CheckClickBuilding())
+        if (!CheckPlaceBuilding() && !CheckClickBuilding() && !CheckInspectEntity())
         {
             cursorText.text = null;
             cursorImage.sprite = _initialCursorSprite;
@@ -151,6 +152,27 @@ CTRL + Mouse Wheel to rotate.";
             cursorImage.sprite = hoverSprite;
 
             if (Input.GetKeyDown(KeyCode.Mouse0)) building.OpenOverlay();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool CheckInspectEntity()
+    {
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out var hit, reach,
+            entityLayerMask))
+        {
+            var entity = hit.transform.gameObject.GetComponent<Entity>();
+
+            if (entity is null) return false;
+            
+            cursorText.text = $@"{entity.GetDisplayName()}
+
+{entity.GetDescription()}
+";
+            cursorImage.sprite = _initialCursorSprite;
 
             return true;
         }

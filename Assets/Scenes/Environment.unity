@@ -1438,6 +1438,9 @@ MonoBehaviour:
   clicklayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  entityLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
   reach: 100
   buildings:
   - prefab: {fileID: 4722946067534260128, guid: eb5ff8f922edced41b75d60d38d0df39, type: 3}
@@ -3147,6 +3150,14 @@ MonoBehaviour:
   resourcePrefab: {fileID: 3862812808369463517, guid: ada0f8de2450e495e840ef6419105dbc, type: 3}
   resourceSpawnPoint: {fileID: 620445376}
   resourceSpawnRadius: 50
+  maxPlayers: 10
+  maxWorkers: 10
+  maxMonsters: 10
+  maxResources: 10
+  _monsterCount: 0
+  _playerCount: 0
+  _resourceCount: 0
+  _workerCount: 0
 --- !u!4 &1585532748
 Transform:
   m_ObjectHideFlags: 0
@@ -3699,6 +3710,14 @@ MonoBehaviour:
   resourcePrefab: {fileID: 0}
   resourceSpawnPoint: {fileID: 0}
   resourceSpawnRadius: 0
+  maxPlayers: 10
+  maxWorkers: 10
+  maxMonsters: 10
+  maxResources: 10
+  _monsterCount: 10
+  _playerCount: 10
+  _resourceCount: 10
+  _workerCount: 10
 --- !u!1001 &1763489164
 PrefabInstance:
   m_ObjectHideFlags: 0
