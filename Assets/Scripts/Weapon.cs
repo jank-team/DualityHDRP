@@ -1,4 +1,8 @@
 public class Weapon : Item
 {
-    public double Attack;
+    public float Attack;
+
+    public float AttackRange;
+
+    public int AttackCooldown = -5;
 }
