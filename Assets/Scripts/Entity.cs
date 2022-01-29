@@ -59,10 +59,21 @@ public class Entity : MonoBehaviour
 
     private void Attack(Entity target)
     {
-        target.currentHealth -= GetAttack() + target.GetDefence();
-        if (target.currentHealth <= 0)
-        {
-            target.Kill();
+        float nextDamageEvent = 0.0f;
+
+        if (((target.transform.position - this.transform.position).sqrMagnitude) <= this.Weapon.AttackRange){
+
+            if(Time.time >= nextDamageEvent){
+                nextDamageEvent = Time.time + this.Weapon.AttackSpeed;
+                target.currentHealth -= GetAttack() + target.GetDefence();
+
+                if (target.currentHealth <= 0)
+                {
+                    target.Kill();
+                }
+            }else{
+                nextDamageEvent = Time.time + this.Weapon.AttackSpeed;
+            }          
         }
     }
 
