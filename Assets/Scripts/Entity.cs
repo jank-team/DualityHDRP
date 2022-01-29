@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Entity : MonoBehaviour
 {
     public enum TaskType
@@ -28,10 +29,12 @@ public class Entity : MonoBehaviour
     public GameObject currentTarget;
 
     public AudioClip attackClip;
+    private AudioSource _audioSource;
 
     // Start is called before the first frame update
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         InvokeRepeating(nameof(TimedUpdate), 0, 0.1f);
     }
 
@@ -69,7 +72,7 @@ public class Entity : MonoBehaviour
         if (!currentTarget) return;
         if (currentAttackCooldown != 0) return;
         
-        AudioManager.Instance.PlayOneShot(attackClip);
+        _audioSource.PlayOneShot(attackClip);
         
         // if (!((currentTarget.transform.position - transform.position).sqrMagnitude <= Weapon.AttackRange)) return;
         var target = currentTarget.GetComponent<Entity>();
