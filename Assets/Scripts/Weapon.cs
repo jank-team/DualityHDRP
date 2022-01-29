@@ -4,6 +4,5 @@ public class Weapon : Item
 
     public float AttackRange;
 
-    public float AttackSpeed = 1.0f; //
-
+    public int AttackCooldown = -5;
 }

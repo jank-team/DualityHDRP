@@ -19,6 +19,8 @@ public class Entity : MonoBehaviour
     public float baseAttack = 10;
     public float baseDefence = 0;
     public float baseMoveSpeed = 0.05f;
+    public int baseAttackCooldown = 20;
+    public int currentAttackCooldown = 0;
     public Weapon Weapon;
     public Armor Armor;
     public int resource = 0;
@@ -29,7 +31,7 @@ public class Entity : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        InvokeRepeating(nameof(TimedUpdate), 0, 1.0f);
+        InvokeRepeating(nameof(TimedUpdate), 0, 0.1f);
     }
 
     // Update is called once per frame
@@ -40,16 +42,20 @@ public class Entity : MonoBehaviour
 
     private void TimedUpdate()
     {
+        if (currentAttackCooldown > 0)
+        {
+            currentAttackCooldown--;
+        }
     }
 
     private float GetAttack()
     {
-        return baseAttack + Weapon?.Attack ?? 0;
+        return baseAttack + Weapon?.Attack ?? 5;
     }
 
     private float GetDefence()
     {
-        return baseDefence + Armor?.Defence ?? 0;
+        return baseDefence + Armor?.Defence ?? 5;
     }
 
     private float GetMoveSpeed()
@@ -57,28 +63,25 @@ public class Entity : MonoBehaviour
         return baseMoveSpeed;
     }
 
-    private void Attack(Entity target)
+    private void Attack()
     {
-        float nextDamageEvent = 0.0f;
+        if (!currentTarget) return;
+        if (currentAttackCooldown != 0) return;
+        // if (!((currentTarget.transform.position - transform.position).sqrMagnitude <= Weapon.AttackRange)) return;
+        var target = currentTarget.GetComponent<Entity>();
+        currentAttackCooldown = baseAttackCooldown + Weapon?.AttackCooldown ?? 0;
+        target.currentHealth -= GetAttack() + target.GetDefence();
 
-        if (((target.transform.position - this.transform.position).sqrMagnitude) <= this.Weapon.AttackRange){
-
-            if(Time.time >= nextDamageEvent){
-                nextDamageEvent = Time.time + this.Weapon.AttackSpeed;
-                target.currentHealth -= GetAttack() + target.GetDefence();
-
-                if (target.currentHealth <= 0)
-                {
-                    target.Kill();
-                }
-            }else{
-                nextDamageEvent = Time.time + this.Weapon.AttackSpeed;
-            }          
+        if (target.currentHealth <= 0)
+        {
+            currentTarget = null;
+            target.Kill();
         }
     }
 
     private void Kill()
     {
+        Destroy(gameObject);
     }
 
     private void DoTask()
@@ -125,13 +128,20 @@ public class Entity : MonoBehaviour
                 break;
             case TaskType.AttackTarget:
             {
+                if (!currentTarget)
+                {
+                    currentTask = TaskType.Idle;
+                    break;
+                }
+
                 var targetPosition = currentTarget.transform.position;
                 var distance = Vector3.Distance(transform.position, targetPosition);
                 if (distance > 2)
                 {
                     currentTask = TaskType.GotoTarget;
                 }
-                // @todo attack
+
+                Attack();
             }
                 break;
             default:
