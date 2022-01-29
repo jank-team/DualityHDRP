@@ -50,12 +50,12 @@ public class Entity : MonoBehaviour
 
     private float GetAttack()
     {
-        return baseAttack + Weapon?.Attack ?? 5;
+        return baseAttack + (Weapon?.Attack ?? 0);
     }
 
     private float GetDefence()
     {
-        return baseDefence + Armor?.Defence ?? 5;
+        return baseDefence + (Armor?.Defence ?? 0);
     }
 
     private float GetMoveSpeed()
@@ -69,7 +69,7 @@ public class Entity : MonoBehaviour
         if (currentAttackCooldown != 0) return;
         // if (!((currentTarget.transform.position - transform.position).sqrMagnitude <= Weapon.AttackRange)) return;
         var target = currentTarget.GetComponent<Entity>();
-        currentAttackCooldown = baseAttackCooldown + Weapon?.AttackCooldown ?? 0;
+        currentAttackCooldown = baseAttackCooldown + (Weapon?.AttackCooldown ?? 0);
         target.currentHealth -= GetAttack() + target.GetDefence();
 
         if (target.currentHealth <= 0)
@@ -163,7 +163,8 @@ public class Entity : MonoBehaviour
             {
                 var position = transform.position;
                 var townDistance = Vector3.Distance(position, GameManager.Instance.Town.transform.position);
-                var targetDistance = Vector3.Distance(position, FindNearestTarget().transform.position);
+                var nearestTarget = FindNearestTarget();
+                var targetDistance = nearestTarget ? Vector3.Distance(position, nearestTarget.transform.position) : float.MaxValue;
                 currentTask = townDistance < targetDistance ? TaskType.GotoTown : TaskType.GotoTarget;
             }
                 break;
