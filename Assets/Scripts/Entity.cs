@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -105,6 +104,24 @@ public class Entity : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position,
                     GameManager.Instance.Town.transform.position, GetMoveSpeed());
+                switch (occupation)
+                {
+                    case Occupation.Player:
+                    case Occupation.Worker:
+                    {
+                        // @todo drop resource
+                    }
+                        break;
+                    case Occupation.Monster:
+                    {
+                        // @todo attack
+                    }
+                        break;
+                    case Occupation.Resource:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
                 break;
             case TaskType.GotoTarget:
