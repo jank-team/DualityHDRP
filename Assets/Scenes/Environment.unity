@@ -3141,13 +3141,13 @@ MonoBehaviour:
   playerPrefab: {fileID: 3862812808369463517, guid: ada0f8de2450e495e840ef6419105dbc, type: 3}
   playerSpawnPoint: {fileID: 2103563545}
   playerSpawnRadius: 15
-  workerPrefab: {fileID: 3862812808369463517, guid: ada0f8de2450e495e840ef6419105dbc, type: 3}
+  workerPrefab: {fileID: 8452252287413023807, guid: 0ad541278a042064b8f5c9f1d76b1dec, type: 3}
   workerSpawnPoint: {fileID: 1459358573}
   workerSpawnRadius: 10
   monsterPrefab: {fileID: 1695475360778002036, guid: 6bc0a864f541143c49ba6facd85ca1e3, type: 3}
   monsterSpawnPoint: {fileID: 1872440034}
   monsterSpawnRadius: 30
-  resourcePrefab: {fileID: 3862812808369463517, guid: ada0f8de2450e495e840ef6419105dbc, type: 3}
+  resourcePrefab: {fileID: 5976988031901475539, guid: 2f5efb92fe694884f8969abf155e9e71, type: 3}
   resourceSpawnPoint: {fileID: 620445376}
   resourceSpawnRadius: 50
   maxPlayers: 10

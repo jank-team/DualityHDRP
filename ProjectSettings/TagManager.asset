@@ -8,6 +8,8 @@ TagManager:
   - Monster
   - WeaponSmith
   - ArmorSmith
+  - Resource
+  - Worker
   layers:
   - Default
   - TransparentFX

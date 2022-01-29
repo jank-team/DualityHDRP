@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
 
         EntityFactory.MakePlayer();
         EntityFactory.MakeMonster();
+        EntityFactory.MakeResource();
+        EntityFactory.MakeWorker();
 
         currentTime++;
     }
