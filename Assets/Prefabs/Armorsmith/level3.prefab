@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2218327323890813300}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: level3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 2672008408389663144}
   - component: {fileID: 683018791356814126}
   - component: {fileID: 5989892428859051480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 87385506892913618}
   - component: {fileID: 5447086692990024201}
   - component: {fileID: 6612749715536398652}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: farm_house_lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 4900781142961049872}
   - component: {fileID: 1328451732876689768}
   - component: {fileID: 6562407878233438609}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 6698304788281586868}
   - component: {fileID: 334464393296538945}
   - component: {fileID: 2357735368429601261}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 1814208621514241418}
   - component: {fileID: 1814208621515372362}
   - component: {fileID: 1814208621507779146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 6532800976396357247}
   - component: {fileID: 7606532649599802638}
   - component: {fileID: 6065038340430014768}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 601351904723274261}
   - component: {fileID: 4349429839358689829}
   - component: {fileID: 5554132556457167927}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 5173889197244205258}
   - component: {fileID: 5173889197243206154}
   - component: {fileID: 5173889197233825546}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,7 +853,7 @@ GameObject:
   - component: {fileID: 5332580678454113497}
   - component: {fileID: 5361235075369378065}
   - component: {fileID: 5351737331755798565}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_well_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   - component: {fileID: 6233635528095025648}
   - component: {fileID: 464885328300285184}
   - component: {fileID: 6880710373889383102}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1016,7 @@ GameObject:
   - component: {fileID: 113008488989959921}
   - component: {fileID: 2529225605607235332}
   - component: {fileID: 4140347916313997199}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 5962288056135728188}
   - component: {fileID: 5962288056136859388}
   - component: {fileID: 5962288056129328124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: house_lvl4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1218,7 +1218,7 @@ GameObject:
   - component: {fileID: 1830415216506889213}
   - component: {fileID: 6357009758822688809}
   - component: {fileID: 8259296233126476943}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1319,7 +1319,7 @@ GameObject:
   - component: {fileID: 6225156829516453569}
   - component: {fileID: 6225156829517550593}
   - component: {fileID: 6225156829522852097}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1420,7 @@ GameObject:
   - component: {fileID: 8503945704972500402}
   - component: {fileID: 3455621675323561735}
   - component: {fileID: 3833467611376613570}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1521,7 +1521,7 @@ GameObject:
   - component: {fileID: 5750806035867739198}
   - component: {fileID: 16237062667781877}
   - component: {fileID: 8703254094315868175}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1621,7 +1621,7 @@ GameObject:
   - component: {fileID: 1597063979872153394}
   - component: {fileID: 7371358999433676087}
   - component: {fileID: 373618091640121613}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1703,7 +1703,7 @@ GameObject:
   - component: {fileID: 8063133625487049536}
   - component: {fileID: 8063133625488015744}
   - component: {fileID: 8063133625476672640}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1804,7 +1804,7 @@ GameObject:
   - component: {fileID: 8416072201603639252}
   - component: {fileID: 8416072201602508052}
   - component: {fileID: 8416072201597175828}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1904,6 +1904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bucket
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ba4236f42449b34f9b7da8571066ae6, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ba4236f42449b34f9b7da8571066ae6, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1977,6 +1981,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 78f4b8e7c73a0104a8112763cb8f5aec, type: 3}
       propertyPath: m_Name
       value: house_lvl6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 78f4b8e7c73a0104a8112763cb8f5aec, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 78f4b8e7c73a0104a8112763cb8f5aec, type: 3}
       propertyPath: m_RootOrder
@@ -2052,6 +2060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: house_lvl3
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ff0c5730e5fa3234caf0037697be949a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff0c5730e5fa3234caf0037697be949a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2126,6 +2138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rpgpp_lt_trough_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1833936599012662, guid: 7f3b1263233678a4a92861d908051fe3, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4966303650379956, guid: 7f3b1263233678a4a92861d908051fe3, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -2199,6 +2215,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 9ba4236f42449b34f9b7da8571066ae6, type: 3}
       propertyPath: m_Name
       value: bucket (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ba4236f42449b34f9b7da8571066ae6, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ba4236f42449b34f9b7da8571066ae6, type: 3}
       propertyPath: m_RootOrder

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8938366823084329939}
   - component: {fileID: 895881570472321494}
   - component: {fileID: 8002271817665580524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8299485058678801530}
   - component: {fileID: 6243247623397162701}
   - component: {fileID: 4865154164780460270}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: shovel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 4368718148926844177}
   - component: {fileID: 7805027055064381921}
   - component: {fileID: 3845983783975681631}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 1336465870153733731}
   - component: {fileID: 2825983557698158668}
   - component: {fileID: 4302045681292572933}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: stone_ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 7716048080584539955}
   - component: {fileID: 2428966329976397544}
   - component: {fileID: 3596028277033086429}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: farm_house_lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8424977664577891733}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 3951825977702584405}
   - component: {fileID: 7964296984816847264}
   - component: {fileID: 5375828653820273932}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rpgpp_lt_log_wood_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,6 +593,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 30a345e5ee05a4c43af344fe72769488, type: 3}
       propertyPath: m_Name
       value: farm_house_lvl2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 30a345e5ee05a4c43af344fe72769488, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 30a345e5ee05a4c43af344fe72769488, type: 3}
       propertyPath: m_RootOrder
