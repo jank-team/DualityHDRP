@@ -20,6 +20,8 @@ public class Building : MonoBehaviour, IBuilding
     public Button closeOverlayButton;
     public Button closeOverlayBackgroundButton;
 
+    public AudioClip openClip;
+    
     public List<GameObject> levels;
     public GameObject currentPrefab;
 
@@ -126,6 +128,7 @@ public class Building : MonoBehaviour, IBuilding
     public void OpenOverlay()
     {
         if (_isOverlayOpen) return;
+        AudioManager.Instance.PlayOneShot(openClip);
         UpdateOverlay();
         Camera.main.GetComponent<FreeFlyCamera>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
