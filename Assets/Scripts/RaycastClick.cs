@@ -11,6 +11,7 @@ public class PlaceableBuilding
 {
     public GameObject prefab;
     public int cost;
+    public bool ignoreCollision;
 }
 
 public class RaycastClick : MonoBehaviour
@@ -104,12 +105,13 @@ public class RaycastClick : MonoBehaviour
                 if (_building != null) Destroy(_building);
                 _building = Instantiate(placeableBuilding.prefab, Vector3.down * 1000, Quaternion.identity);
                 _buildingCollider = _building.GetComponent<BoxCollider>();
-                _buildingCollider.enabled = false;
+                if (_buildingCollider != null) _buildingCollider.enabled = false;
             }
 
             if (hasGroundHit) _building.transform.position = groundHit.point;
 
-            if (!hasGroundHit || Physics.CheckBox(groundHit.point, _buildingCollider.size / 2, Quaternion.identity,
+            if (!hasGroundHit || !placeableBuilding.ignoreCollision && Physics.CheckBox(groundHit.point,
+                _buildingCollider.size / 2, Quaternion.identity,
                 invalidBuildingPlacementMask))
             {
                 cursorText.text = "You can't build here.";
@@ -126,7 +128,7 @@ Left click to place building.
 Mouse wheel to change building.
 
 CTRL + Mouse Wheel to rotate.";
-            
+
             if (Town.Instance.balance < placeableBuilding.cost)
             {
                 cursorImage.sprite = invalidBuildingPlacementCursorImage;
@@ -136,7 +138,7 @@ CTRL + Mouse Wheel to rotate.";
             if (!Input.GetKeyDown(KeyCode.Mouse0)) return true;
 
             // Place building
-            _buildingCollider.enabled = true;
+            if (_buildingCollider != null) _buildingCollider.enabled = true;
             _buildingCollider = null;
             _building = null;
 
