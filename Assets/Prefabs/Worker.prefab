@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupation: 2
-  currentHealth: 50
+  currentHealth: 100
   lastHealth: 0
   maxHealth: 100
   baseAttack: 10
