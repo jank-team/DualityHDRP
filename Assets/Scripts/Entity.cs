@@ -160,7 +160,7 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
         {
             if (_currentTargetEntity.occupation == Occupation.Resource)
             {
-                resource += _currentTargetEntity.resource;
+                balance += _currentTargetEntity.resource * 20;
             }
 
             currentTarget = null;
