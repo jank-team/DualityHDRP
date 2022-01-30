@@ -80,7 +80,27 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
             {
                 for (var x = 0; x < healthPercent; ++x)
                 {
-                    _healthBarTexture.SetPixel(x, y, Color.green);
+                    switch (occupation)
+                    {
+                        case Occupation.Player:
+                        case Occupation.Worker:
+                        {
+                            _healthBarTexture.SetPixel(x, y, Color.green);
+                        }
+                            break;
+                        case Occupation.Monster:
+                        {
+                            _healthBarTexture.SetPixel(x, y, Color.red);
+                        }
+                            break;
+                        case Occupation.Resource:
+                        {
+                            _healthBarTexture.SetPixel(x, y, Color.yellow);
+                        }
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                 }
             }
 
@@ -179,32 +199,38 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
             {
                 // transform.position = Vector3.MoveTowards(transform.position,
                 //     GameManager.Instance.Town.transform.position, GetMoveSpeed());
-                var direction = (GameManager.Instance.Town.transform.position - transform.position).normalized;
+                var targetPosition = GameManager.Instance.Town.transform.position;
+                var direction = (targetPosition - transform.position).normalized;
                 GetComponent<Rigidbody>()
                     .MovePosition(transform.position + direction * Time.deltaTime * GetMoveSpeed());
-                switch (occupation)
+                var distance = Vector3.Distance(transform.position, targetPosition);
+                if (distance < 5)
                 {
-                    case Occupation.Player:
-                    case Occupation.Worker:
+                    switch (occupation)
                     {
-                        GameManager.Instance.Town.GetComponent<Town>().resource += resource;
-                        resource = 0;
-
-                        if (occupation == Occupation.Player)
+                        case Occupation.Player:
+                        case Occupation.Worker:
                         {
-                            UpgradeItems();
+                            GameManager.Instance.Town.GetComponent<Town>().resource += resource;
+                            resource = 0;
+
+                            if (occupation == Occupation.Player)
+                            {
+                                UpgradeItems();
+                            }
                         }
+                            break;
+                        case Occupation.Monster:
+                        {
+                            // @todo attack
+                        }
+                            break;
+                        case Occupation.Resource:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
-                        break;
-                    case Occupation.Monster:
-                    {
-                        // @todo attack
-                    }
-                        break;
-                    case Occupation.Resource:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                    currentTask = TaskType.Idle;
                 }
             }
                 break;
