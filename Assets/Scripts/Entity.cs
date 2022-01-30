@@ -27,7 +27,7 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
     public Weapon Weapon;
     public Armor Armor;
     public int resource = 0;
-    public float balance = 100;
+    public float balance = 0;
     public TaskType currentTask = TaskType.Idle;
     private Entity _currentTargetEntity;
     public GameObject currentTarget;
@@ -160,7 +160,8 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
         {
             if (_currentTargetEntity.occupation == Occupation.Resource)
             {
-                balance += _currentTargetEntity.resource * 20;
+                balance += _currentTargetEntity.balance;
+                resource++;
             }
 
             currentTarget = null;
@@ -209,20 +210,21 @@ public class Entity : MonoBehaviour, IObservable<EntityEvent>
                     switch (occupation)
                     {
                         case Occupation.Player:
-                        case Occupation.Worker:
                         {
-                            GameManager.Instance.Town.GetComponent<Town>().resource += resource;
+                            UpgradeItems();
                             resource = 0;
-
-                            if (occupation == Occupation.Player)
-                            {
-                                UpgradeItems();
-                            }
                         }
                             break;
                         case Occupation.Monster:
                         {
                             // @todo attack
+                        }
+                            break;
+                        case Occupation.Worker:
+                        {
+                            GameManager.Instance.Town.GetComponent<Town>().balance += balance;
+                            balance = 0;
+                            resource = 0;
                         }
                             break;
                         case Occupation.Resource:

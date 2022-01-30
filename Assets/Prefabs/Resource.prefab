@@ -120,8 +120,8 @@ MonoBehaviour:
   baseMoveSpeed: 0
   baseAttackCooldown: 100
   currentAttackCooldown: 0
-  resource: 1
-  balance: 0
+  resource: 0
+  balance: 10
   currentTask: 0
   currentTarget: {fileID: 0}
   attackClip: {fileID: 8300000, guid: 48db510aa7c1e40869a304e404d93f02, type: 3}
